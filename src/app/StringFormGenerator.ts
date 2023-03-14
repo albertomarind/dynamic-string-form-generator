@@ -1,3 +1,4 @@
+import { Validators } from "@angular/forms";
 import { Calendar } from "src/app/calendar";
 import { AbsControl } from "src/app/abs-control";
 import { Dropdown } from "src/app/dropdown";
@@ -42,6 +43,98 @@ export class StringFormGenerator {
           ${forms.map((form: Form) => this.getForm(form)).join('')}
       </form>
     `;
+  }
+
+  getFormBuilderJSON(forms: Form[]) {
+    let objFormBuilder: any = {};
+
+    for (const form of forms) {
+      objFormBuilder[form.formGroupName] = {};
+      for (const row of form.rows) {
+        for (const col of row.cols) {
+          objFormBuilder[form.formGroupName][col.control.formControlName] = [
+            {
+              value: null,
+              disabled: !!col.control.disabled
+            },
+            [
+              'Validators.required'
+            ]
+          ]
+        }
+      }
+    }
+
+    return JSON.stringify(objFormBuilder).replaceAll('"','');
+    // return forms.map((form: Form) => {
+    //   return form.rows.map((row: Row) => {
+    //     return row.cols.reduce((previousValue: Col, currentValue: Col) => {
+    //       return {
+    //         ...previousValue,
+    //         [currentValue.control.formControlName]: [
+    //           {
+    //             value: null,
+    //             disabled: !!currentValue.control.disabled
+    //           }, ['Validators.required']
+    //         ]
+    //       }
+    //     }, {} as any);
+    //   }).reduce((previousValue: any, currentValue: any) => {
+    //     return {
+    //       ...previousValue,
+    //       ...currentValue
+    //     }
+    //   }, {});
+    // }).reduce((previousValue: any, currentValue: any) => {
+    //   return {
+    //     ...previousValue,
+    //     ...currentValue
+    //   }
+    // }, {});
+
+
+    // .
+    //   rows.map((row: Row) => {
+    //     return row.cols.reduce((previousValue: Col, currentValue: Col) => {
+    //       return {
+    //         ...previousValue,
+    //         [currentValue.control.formControlName]: [
+    //           {
+    //             value: null,
+    //             disabled: !!currentValue.control.disabled
+    //           }, ['Validators.required']
+    //         ]
+    //       }
+    //     }, {} as any);
+    //   }).reduce((previousValue: any, currentValue: any) => {
+    //     return {
+    //       ...previousValue,
+    //       ...currentValue
+    //     }
+    //   }, {});
+
+
+    // return forms[0].rows[0].cols.reduce((previousValue: Col, currentValue: Col) => {
+    //   return {
+    //     ...previousValue,
+    //     [currentValue.control.formControlName]: [{
+    //       value: null,
+    //       disabled: !!currentValue.control.disabled
+    //     }, ['Validators.required']]
+    //   }
+    // }, {} as any);
+
+
+    // return forms.map((form: Form) => {
+    //   return form.rows.map((row: Row) => {
+    //     return row.cols.reduce((previousValue: Col, currentValue: Col) => {
+    //       return {
+    //         ...previousValue,
+    //         [currentValue.control.formControlName]: [{value: null, disabled: currentValue.control.disabled}]
+    //       }
+    //     }, {} as any)
+    //   })
+    // });
   }
 
   getForm(form: Form): string {

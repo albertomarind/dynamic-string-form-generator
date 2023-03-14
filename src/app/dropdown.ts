@@ -10,9 +10,9 @@ export class Dropdown extends AbsControl implements FormStringify {
 
   toStringForm(): string {
     return `
-        <label class="control-label" for="${this.formControlName}">${this.label}${this.required && this.getSpanAsterisk()}</label>
-        <p-dropdown id="${this.formControlName}" class="form-control" formControlName="${this.formControlName}" placeholder="Ingresa ${this.label.toLowerCase()}" ${this.disabled && '[disabled]="true"'} [options]="[{label:'Opción 1', value:0},{label:'Opción 2', value:1}]" > </p-dropdown>
-        ${this.required && this.getSpanForRequiredControl()}
+        <label class="control-label" for="${this.formControlName}">${this.label}${this.required?this.getSpanAsterisk():''}</label>
+        <p-dropdown id="${this.formControlName}" class="form-control" formControlName="${this.formControlName}" placeholder="Ingresa ${this.label.toLowerCase()}" ${this.disabled ?'[disabled]="true"':''} [options]="[{label:'Opción 1', value:0},{label:'Opción 2', value:1}]" > </p-dropdown>
+        ${this.required ? this.getSpanForRequiredControl():''}
     `;
   }
 

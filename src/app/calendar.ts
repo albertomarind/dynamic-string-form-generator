@@ -10,9 +10,9 @@ export class Calendar extends AbsControl implements FormStringify {
 
   toStringForm(): string {
     return `
-        <label class="control-label" for="${this.formControlName}">${this.label}${this.required && this.getSpanAsterisk()}</label>
-        <p-calendar id="${this.formControlName}" styleClass="form-control" formControlName="${this.formControlName}" [showIcon]="true" dateFormat="dd/mm/yy" placeholder="Ingresa ${this.label.toLowerCase()}" ${this.disabled && '[disabled]="true"'}  > </p-calendar>
-        ${this.required && this.getSpanForRequiredControl()}
+        <label class="control-label" for="${this.formControlName}">${this.label}${this.required ? this.getSpanAsterisk() : ''}</label>
+        <p-calendar id="${this.formControlName}" styleClass="form-control" formControlName="${this.formControlName}" [showIcon]="true" dateFormat="dd/mm/yy" placeholder="Ingresa ${this.label.toLowerCase()}" ${this.disabled ? '[disabled]="true"' : ''}  > </p-calendar>
+        ${this.required ? this.getSpanForRequiredControl() : ''}
     `;
   }
 

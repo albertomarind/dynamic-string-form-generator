@@ -12,7 +12,7 @@ export class InputText extends AbsControl implements FormStringify {
     return `
         <label class="control-label" for="${this.formControlName}">${this.label}${this.required ? this.getSpanAsterisk() : ''}</label>
         <input id="${this.formControlName}" type="text" class="form-control" formControlName="${this.formControlName}" placeholder="Ingresa ${this.label.toLowerCase()}" ${this.disabled ? '[disabled]="true"' : ''}>
-        ${this.required && this.getSpanForRequiredControl()}
+        ${this.required ? this.getSpanForRequiredControl() : ''}
     `;
   }
 

@@ -237,6 +237,7 @@ export class AppComponent implements OnInit {
     ];
     const formGenerator = new StringFormGenerator();
     this.stringForm = pretty(formGenerator.build(forms), {ocd: true});
+    console.log(formGenerator.getFormBuilderJSON(forms));
   }
 
 }
