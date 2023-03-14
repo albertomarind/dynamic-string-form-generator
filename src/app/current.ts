@@ -2,9 +2,40 @@ import { Form, TypeControl } from "src/app/StringFormGenerator";
 
 export const forms: Form[] = [
   {
-    label: 'Datos del contratante',
-    formGroupName: 'datosContratante',
+    label: 'Datos del finado',
+    formGroupName: 'datosFinado',
     rows: [
+      {
+        cols: [
+          {
+            size: 3,
+            control: {
+              label: 'Tipo de orden',
+              formControlName: 'tipoOrden',
+              type: TypeControl.Dropdown,
+              required: true
+            }
+          },
+          {
+            size: 3,
+            control: {
+              label: 'No. de contrato',
+              formControlName: 'noContrato',
+              type: TypeControl.InputText,
+              required: true
+            }
+          },
+          {
+            size: 3,
+            control: {
+              label: 'Velatorio - previsión',
+              formControlName: 'velatorioPrevision',
+              type: TypeControl.InputText,
+              required: true
+            }
+          },
+        ]
+      },
       {
         cols: [
           {
@@ -19,48 +50,17 @@ export const forms: Form[] = [
           {
             size: 4,
             control: {
-              label: 'RFC',
-              formControlName: 'rfc',
-              type: TypeControl.InputText,
-              required: true
-            }
-          },
-          {
-            size: 4,
-            control: {
               label: 'CURP',
               formControlName: 'curp',
               type: TypeControl.InputText,
               required: true
             }
           },
-        ]
-      },
-      {
-        cols: [
           {
             size: 4,
             control: {
-              label: 'Nombre (s)',
-              formControlName: 'nombre',
-              type: TypeControl.InputText,
-              required: true
-            }
-          },
-          {
-            size: 4,
-            control: {
-              label: 'Primer apellido',
-              formControlName: 'primerApellido',
-              type: TypeControl.InputText,
-              required: true
-            }
-          },
-          {
-            size: 4,
-            control: {
-              label: 'Segundo apellido',
-              formControlName: 'curp',
+              label: 'NSS',
+              formControlName: 'nss',
               type: TypeControl.InputText,
               required: true
             }
@@ -77,7 +77,15 @@ export const forms: Form[] = [
               type: TypeControl.Calendar,
               required: true
             }
-
+          },
+          {
+            size: 3,
+            control: {
+              label: 'Edad',
+              formControlName: 'edad',
+              type: TypeControl.InputText,
+              required: true
+            }
           },
           {
             size: 3,
@@ -87,7 +95,6 @@ export const forms: Form[] = [
               type: TypeControl.Dropdown,
               required: true
             }
-
           },
           {
             size: 3,
@@ -95,16 +102,6 @@ export const forms: Form[] = [
               label: 'Nacionalidad',
               formControlName: 'nacionalidad',
               type: TypeControl.Dropdown,
-              required: true
-            }
-
-          },
-          {
-            size: 3,
-            control: {
-              label: 'Lugar de nacimiento',
-              formControlName: 'lugarNacimiento',
-              type: TypeControl.InputText,
               required: true
             }
           }
@@ -115,17 +112,17 @@ export const forms: Form[] = [
           {
             size: 3,
             control: {
-              label: 'Teléfono',
-              formControlName: 'telefono',
-              type: TypeControl.InputText,
+              label: 'Fecha de defunción',
+              formControlName: 'fechaDefuncion',
+              type: TypeControl.Calendar,
               required: true
             }
           },
           {
-            size: 6,
+            size: 3,
             control: {
-              label: 'Correo electrónico',
-              formControlName: 'correoElectronico',
+              label: 'Causa del deceso',
+              formControlName: 'causaDeceso',
               type: TypeControl.InputText,
               required: true
             }
@@ -133,9 +130,62 @@ export const forms: Form[] = [
           {
             size: 3,
             control: {
-              label: 'Parentesco',
-              formControlName: 'parentesco',
+              label: 'Lugar de deceso',
+              formControlName: 'lugarDeceso',
               type: TypeControl.InputText,
+              required: true
+            }
+          },
+          {
+            size: 3,
+            control: {
+              label: 'Hora del deceso',
+              formControlName: 'horaDeceso',
+              type: TypeControl.Calendar,
+              required: true
+            }
+          }
+        ]
+      },
+      {
+        cols: [
+          {
+            size: 6,
+            control: {
+              label: 'Clínica de adscripción',
+              formControlName: 'clinicaAdscripcion',
+              type: TypeControl.Dropdown,
+              required: true
+            }
+          },
+          {
+            size: 6,
+            control: {
+              label: 'Unidad de procedencia',
+              formControlName: 'unidadProcedencia',
+              type: TypeControl.Dropdown,
+              required: true
+            }
+          }
+        ]
+      },
+      {
+        cols: [
+          {
+            size: 6,
+            control: {
+              label: 'Procedencia del finado',
+              formControlName: 'procedenciaFinado',
+              type: TypeControl.InputText,
+              required: true
+            }
+          },
+          {
+            size: 6,
+            control: {
+              label: 'Tipo de pensión',
+              formControlName: 'tipoPension',
+              type: TypeControl.Dropdown,
               required: true
             }
           }
@@ -162,7 +212,7 @@ export const forms: Form[] = [
             size: 3,
             control: {
               label: 'No. exterior',
-              formControlName: 'calle',
+              formControlName: 'noExterior',
               type: TypeControl.InputText,
               required: true
             }
@@ -205,8 +255,7 @@ export const forms: Form[] = [
               label: 'Municipio',
               formControlName: 'municipio',
               type: TypeControl.InputText,
-              required: false,
-              disabled: true
+              required: true
             }
           },
           {
@@ -215,7 +264,7 @@ export const forms: Form[] = [
               label: 'Estado',
               formControlName: 'estado',
               type: TypeControl.Dropdown,
-              required: true,
+              required: true
             }
           }
         ]

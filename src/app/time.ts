@@ -2,7 +2,7 @@ import { AbsControl } from "src/app/abs-control";
 import { FormStringify } from "src/app/form-stringify";
 import { Control } from "src/app/StringFormGenerator";
 
-export class Dropdown extends AbsControl implements FormStringify {
+export class Time extends AbsControl implements FormStringify {
 
   constructor(control: Control, formGroupName: string) {
     super(control.label, control.formControlName, !!control.required, !!control.disabled, formGroupName);
@@ -10,9 +10,9 @@ export class Dropdown extends AbsControl implements FormStringify {
 
   toStringForm(): string {
     return `
-        <label class="control-label" for="${this.formControlName}">${this.label}${this.required?this.getSpanAsterisk():''}:</label>
-        <p-dropdown id="${this.formControlName}" class="form-control" formControlName="${this.formControlName}" placeholder="Selecciona ${this.label.toLowerCase()}"  [options]="[{label:'Opción 1', value:0},{label:'Opción 2', value:1}]" > </p-dropdown>
-        ${this.required ? this.getSpanForRequiredControl():''}
+        <label class="control-label" for="${this.formControlName}">${this.label}${this.required ? this.getSpanAsterisk() : ''}:</label>
+        <p-calendar id="${this.formControlName}" styleClass="form-control" formControlName="${this.formControlName}" [showIcon]="true" placeholder="00:00"  [timeOnly]="true"> </p-calendar>
+        ${this.required ? this.getSpanForRequiredControl() : ''}
     `;
   }
 
@@ -23,6 +23,5 @@ export class Dropdown extends AbsControl implements FormStringify {
   private getSpanAsterisk(): string {
     return `<span class="req">*</span>`;
   }
-
 
 }

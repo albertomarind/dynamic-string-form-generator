@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { forms } from "src/app/example";
+import { forms } from "src/app/current";
 import { Form, StringFormGenerator, TypeControl } from "src/app/StringFormGenerator";
 // @ts-ignore
 import pretty from "pretty";
@@ -18,6 +18,5 @@ export class AppComponent implements OnInit {
     this.stringForm = pretty(formGenerator.build(forms), {ocd: true});
     console.log(formGenerator.getFormBuilderJSON(forms));
   }
-
 
 }

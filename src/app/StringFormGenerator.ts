@@ -3,6 +3,7 @@ import { Calendar } from "src/app/calendar";
 import { AbsControl } from "src/app/abs-control";
 import { Dropdown } from "src/app/dropdown";
 import { InputText } from "src/app/input-text";
+import { Time } from "src/app/time";
 
 export interface Form {
   label: string;
@@ -32,7 +33,9 @@ export interface Control {
 export enum TypeControl {
   InputText,
   Dropdown,
-  Calendar
+  Calendar,
+  Time,
+  InputRadio
 }
 
 
@@ -64,77 +67,7 @@ export class StringFormGenerator {
         }
       }
     }
-
     return JSON.stringify(objFormBuilder).replaceAll('"','');
-    // return forms.map((form: Form) => {
-    //   return form.rows.map((row: Row) => {
-    //     return row.cols.reduce((previousValue: Col, currentValue: Col) => {
-    //       return {
-    //         ...previousValue,
-    //         [currentValue.control.formControlName]: [
-    //           {
-    //             value: null,
-    //             disabled: !!currentValue.control.disabled
-    //           }, ['Validators.required']
-    //         ]
-    //       }
-    //     }, {} as any);
-    //   }).reduce((previousValue: any, currentValue: any) => {
-    //     return {
-    //       ...previousValue,
-    //       ...currentValue
-    //     }
-    //   }, {});
-    // }).reduce((previousValue: any, currentValue: any) => {
-    //   return {
-    //     ...previousValue,
-    //     ...currentValue
-    //   }
-    // }, {});
-
-
-    // .
-    //   rows.map((row: Row) => {
-    //     return row.cols.reduce((previousValue: Col, currentValue: Col) => {
-    //       return {
-    //         ...previousValue,
-    //         [currentValue.control.formControlName]: [
-    //           {
-    //             value: null,
-    //             disabled: !!currentValue.control.disabled
-    //           }, ['Validators.required']
-    //         ]
-    //       }
-    //     }, {} as any);
-    //   }).reduce((previousValue: any, currentValue: any) => {
-    //     return {
-    //       ...previousValue,
-    //       ...currentValue
-    //     }
-    //   }, {});
-
-
-    // return forms[0].rows[0].cols.reduce((previousValue: Col, currentValue: Col) => {
-    //   return {
-    //     ...previousValue,
-    //     [currentValue.control.formControlName]: [{
-    //       value: null,
-    //       disabled: !!currentValue.control.disabled
-    //     }, ['Validators.required']]
-    //   }
-    // }, {} as any);
-
-
-    // return forms.map((form: Form) => {
-    //   return form.rows.map((row: Row) => {
-    //     return row.cols.reduce((previousValue: Col, currentValue: Col) => {
-    //       return {
-    //         ...previousValue,
-    //         [currentValue.control.formControlName]: [{value: null, disabled: currentValue.control.disabled}]
-    //       }
-    //     }, {} as any)
-    //   })
-    // });
   }
 
   getForm(form: Form): string {
@@ -147,7 +80,7 @@ export class StringFormGenerator {
 
   getRow(row: Row, formGroupName: string): string {
     return `
-      <div class="row${row.class ? ' ' + row.class : ''}">
+      <div class="row mb-2${row.class ? ' ' + row.class : ''}">
          ${row.cols.map((c: Col) => this.getCol(c, formGroupName)).join('')}
       </div>
     `;
@@ -169,6 +102,9 @@ export class StringFormGenerator {
     }
     if (control.type === TypeControl.Calendar) {
       return new Calendar(control, formGroupName).toStringForm();
+    }
+    if (control.type === TypeControl.Time) {
+      return new Time(control, formGroupName).toStringForm();
     }
     return ``;
   }

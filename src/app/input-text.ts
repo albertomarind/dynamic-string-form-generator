@@ -10,14 +10,14 @@ export class InputText extends AbsControl implements FormStringify {
 
   toStringForm(): string {
     return `
-        <label class="control-label" for="${this.formControlName}">${this.label}${this.required ? this.getSpanAsterisk() : ''}</label>
-        <input id="${this.formControlName}" type="text" class="form-control" formControlName="${this.formControlName}" placeholder="Ingresa ${this.label.toLowerCase()}" ${this.disabled ? '[disabled]="true"' : ''}>
+        <label class="control-label" for="${this.formControlName}">${this.label}${this.required ? this.getSpanAsterisk() : ''}:</label>
+        <input id="${this.formControlName}" type="text" class="form-control" formControlName="${this.formControlName}" placeholder="Ingresa ${this.label.toLowerCase()}" >
         ${this.required ? this.getSpanForRequiredControl() : ''}
     `;
   }
 
   private getSpanForRequiredControl(): string {
-    return `<span class="campo-obligatorio" *ngIf="${this.formGroupName}.controls['${this.formControlName}']?.errors?.required && (${this.formGroupName}.controls['${this.formControlName}']?.dirty || ${this.formGroupName}.controls['${this.formControlName}']?.touched)">Campo obligatorio</span>`;
+    return `<span class="campo-obligatorio" *ngIf="${this.formGroupName}.${this.formControlName}?.errors?.required && (${this.formGroupName}.${this.formControlName}?.dirty || ${this.formGroupName}.${this.formControlName}?.touched)">Campo obligatorio</span>`;
   }
 
   private getSpanAsterisk(): string {
