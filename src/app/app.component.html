@@ -1,3 +1,7 @@
-<pre [innerText]="stringForm" >
+<button (click)="showJSON = !showJSON">
+  <span *ngIf="!showJSON">Click to show script</span>
+  <span *ngIf="showJSON">Click to show HTML</span>
+</button>
 
-</pre>
+<pre *ngIf="showJSON" [innerText]="json" ></pre>
+<pre *ngIf="!showJSON" [innerText]="stringForm"></pre>

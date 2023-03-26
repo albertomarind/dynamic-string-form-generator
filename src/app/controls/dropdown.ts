@@ -1,8 +1,8 @@
-import { AbsControl } from "src/app/abs-control";
-import { FormStringify } from "src/app/form-stringify";
-import { Control } from "src/app/StringFormGenerator";
+import { Control } from "src/app/builder/interfaces/control.interface";
+import { BaseControl } from "src/app/controls/base-control";
+import { FormStringify } from "src/app/builder/interfaces/form-stringify";
 
-export class Dropdown extends AbsControl implements FormStringify {
+export class Dropdown extends BaseControl implements FormStringify {
 
   constructor(control: Control, formGroupName: string) {
     super(control.label, control.formControlName, !!control.required, !!control.disabled, formGroupName);

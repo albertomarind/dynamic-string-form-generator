@@ -1,8 +1,8 @@
-import { AbsControl } from "src/app/abs-control";
-import { FormStringify } from "src/app/form-stringify";
-import { Control } from "src/app/StringFormGenerator";
+import { Control } from "src/app/builder/interfaces/control.interface";
+import { BaseControl } from "src/app/controls/base-control";
+import { FormStringify } from "src/app/builder/interfaces/form-stringify";
 
-export class Calendar extends AbsControl implements FormStringify {
+export class InputCheckbox extends BaseControl implements FormStringify {
 
   constructor(control: Control, formGroupName: string) {
     super(control.label, control.formControlName, !!control.required, !!control.disabled, formGroupName);
@@ -10,8 +10,10 @@ export class Calendar extends AbsControl implements FormStringify {
 
   toStringForm(): string {
     return `
-        <label class="control-label" for="${this.formControlName}">${this.label}${this.required ? this.getSpanAsterisk() : ''}:</label>
-        <p-calendar id="${this.formControlName}" styleClass="form-control" formControlName="${this.formControlName}" [showIcon]="true" dateFormat="dd/mm/yy" placeholder="Selecciona ${this.label.toLowerCase()}"  > </p-calendar>
+        <div class="flex align-items-center">
+           <p-checkbox [inputId]="'${this.formControlName}'" styleClass="mr-3" formControlName="${this.formControlName}" [binary]="true"></p-checkbox>
+           <label class="control-label" [for]="'${this.formControlName}'">${this.label}</label>
+        </div>
         ${this.required ? this.getSpanForRequiredControl() : ''}
     `;
   }
