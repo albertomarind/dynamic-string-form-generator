@@ -24,7 +24,7 @@ export class InputRadio extends BaseControl implements FormStringify {
        <div class="flex align-items-center mx-2">
           <p-radioButton [inputId]="'${label}'" name="${formControlName}" [value]="${value}"
                          formControlName="${formControlName}"></p-radioButton>
-          <label class="control-label m-0 mx-3" [for]="'${label}'">'${label}'</label>
+          <label class="control-label m-0 mx-3" [for]="'${label}'">${label}</label>
        </div>
     `
   }
